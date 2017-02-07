@@ -9,7 +9,7 @@ description: it is my code road
 author: clunyes
 language: zh-CN       #网页编码,中文
 email: clunyes@126.com  #作者邮箱
-timezone: 
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
