@@ -72,7 +72,12 @@ tags:
 
 4. tcp长连接
 
-    
+    采用心跳包来keep-alive
+    keep-alive ：一个连接在２小时内没有任何动作，服务器就向客户机发送一个探测报文，对于客户机：
+                    (1)正常运行，并从服务器可达，TCP响应正常，保活定时器复位(再次获得２小时)
+                    (2)客户机崩溃,关闭或者正在重启，TCP无响应，75秒后超时，服务器稍后发送9个探测报文(共计１０个)，间隔都为75秒。TCP都没有响应，认为客户机已经关闭连接
+                    (3)客户机崩溃并重启完成：服务器将收到一个探测响应，这个响应是一个复位，使得服务器终止这个连接。
+                    (4)客户机正常运行，但是服务器不可达，探测无响应，10次探测后无响应，关闭
 
 5. git命令，git rebase
 
@@ -100,4 +105,49 @@ tags:
 
 8. art dalvik的区别
 
-    art才用预加载机制，在apk安装时
+    art采用预加载机制，在apk安装时就编译完成，占用空间更多一些。dalvik是动态编译，每次启动都要编译。
+    gc方面，dalvik是同步的，art是部分异步。
+    
+### <font color='af8888'> 某宝公司的电话面试</font>
+
+1. android生命周期介绍
+
+    onCreate 
+    onRestart activity从不可见状态切换成可见状态
+    onStart activity已经可见了，但是还在后台
+    onResume activity可见了
+    onPause activity还是可见的，但是不能交互了
+    onStop activity不可见
+    onDestroy
+
+2. activity的四种启动模式
+    activity栈：可以理解为线性的路径：actA---->actB---->actC 那么abc是在同一个栈中
+    standard 默认 重新创建
+    singleTop 栈顶复用
+    singleTask 栈内复用，会弹出目标activity之上的其余activity
+    singleInstance 单独占用一个栈，其余与singleTask一致
+
+3. 远程service的调用
+    localService和remoteService,就是上文的ipc
+
+4. activity和fragment的区别，fragment的优势
+    fragment对比activity更灵活，activity+fragment可以理想的实现业务。
+   
+    生命周期如下图：
+    ![](../../../../../img/lifecycle.png)
+
+5. 最满意的模块和其中使用的设计模式
+    恩。。
+    
+6. https
+    
+    http + tls/ssl 
+    
+    
+## 单独说一下looper handler
+- 每一个线程有一个Looper，looper内部有一个mq
+- handler有它的特性，handler可以在任意线程发送消息，handler发送的消息都会发送到它关联的looper的mq中
+（handler的创建会关联一个looper，如果不设置默认是当前线程的looper）
+- looper会轮询自己的mq来处理消息
+
+Looper.loop() looper开始工作

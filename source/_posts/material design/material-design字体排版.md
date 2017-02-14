@@ -8,8 +8,8 @@ Dense是中文的书写体
 - 还有一个要点 font weight 有个很完美的翻译，字重！noto字重有Thin, Light, DemiLight, Regular, Medium, Bold, and Black
 roboto字重有Thin, Light, Regular, Medium, Bold, and Black.由于roboto不支持中文，因此中文app开发者应该使用
 noto作为默认字体。[noto下载地址](https://www.google.com/get/noto/) 
-- English and English-like scripts ![](../../../../img/roboto.png)
-- Dense scripts ![](../../../../img/noto.png)
+- English and English-like scripts ![](../../../../../img/roboto.png)
+- Dense scripts ![](../../../../../img/noto.png)
 - 行间距问题（以前我一直觉得行间距改不了），其实能改android:lineSpacingExtra用于设置行间距具体值
  android:lineSpacingMultiplier 用于设置默认行间距的倍数
 - 这里要额外说明一点，有些字体写了87% black，这里的百分比就是透明度#ffffffff，前两位透明度，
