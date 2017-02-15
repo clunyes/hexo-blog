@@ -201,3 +201,5 @@ Looper.loop() looper开始工作
 7. 图片缓存回收的算法    
 
 8. 并发场景，争夺资源
+
+    synchronized
