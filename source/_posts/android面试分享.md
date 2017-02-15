@@ -30,6 +30,8 @@ tags:
 3. 用过哪些设计模式
 
     单例，适配，工厂，策略，代理，builder 然而面试官似乎不满意，不过我接触到的似乎这就这些了。。
+    
+    饿汉单例 懒汉单例
 
 ### <font color='af8888'> 某AI公司，面试官非常有耐心，人非常好（好想跟他混。。。）</font>
 
@@ -108,6 +110,15 @@ tags:
     art采用预加载机制，在apk安装时就编译完成，占用空间更多一些。dalvik是动态编译，每次启动都要编译。
     gc方面，dalvik是同步的，art是部分异步。
     
+9. 事件分发
+    
+    三个关键方法：dispatchTouchEvent 是否消耗当前事件
+    onInterceptTouchEvent
+    onTouchEvent
+    
+
+10. layout绘制流程
+    
 ### <font color='af8888'> 某宝公司的电话面试</font>
 
 1. android生命周期介绍
@@ -151,3 +162,40 @@ tags:
 - looper会轮询自己的mq来处理消息
 
 Looper.loop() looper开始工作
+
+### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
+1. 线程池具体实现有哪几种
+    
+    FixedThreadPool   线程池固定的线程池
+    CachedThreadPool  线程数上限很大，一有任务就会执行，超时就会停止。
+    全部闲置时，线程全部停止，此时线程池不占用内存
+    ScheduledThreadPool  核心线程数固定，非核心线程数目不固定，闲置就会回收
+    SingleThreadExecutor 单个线程的线程池，是同步的
+    
+2. onMeasure参数意义
+    MeasureSpec 32位的值，高2位是SpecMode，低30位是SpecSize
+    SpecMode为
+    
+    UNSPECIFIED 
+    
+    EXACTLY 
+    
+    AT_MOLT 
+    
+    这个之前看书就没有太懂，面试自然不会。。
+    
+    
+
+3. 自定义绘图，旋转
+
+4. 图片3级缓存
+
+5. activity怎么启动的
+    是不是想问app怎么启动的？
+
+6. IntentService
+    service是运行在主线程中的，所以service是不能进行耗时操作的
+    可以执行耗时的任务的service，内部实现是HandlerThread和handler。HandlerThread是一个有Looper的Thread。
+    正是由于HandlerThread，IntentService可以进行耗时操作，处理完所有逻辑之后，会自动关闭服务！（这么厉害的东西，之前都没用过）
+    
+7. 图片缓存回收的算法    
