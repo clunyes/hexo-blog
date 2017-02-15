@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/clean-blog" afterPath="$PROJECT_DIR$/themes/clean-blog" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/modernist" afterPath="$PROJECT_DIR$/themes/modernist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/pacman" afterPath="$PROJECT_DIR$/themes/pacman" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/android面试分享.md" afterPath="$PROJECT_DIR$/source/_posts/android面试分享.md" />
     </list>
     <ignored path="hexo.iws" />
@@ -46,8 +45,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/android面试分享.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="306">
-                <caret line="186" column="4" lean-forward="false" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
+              <first_editor relative-caret-position="438">
+                <caret line="202" column="12" lean-forward="false" selection-start-line="202" selection-start-column="12" selection-end-line="202" selection-end-column="12" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -484,7 +483,7 @@
       <workItem from="1486952848846" duration="578000" />
       <workItem from="1486953441111" duration="5242000" />
       <workItem from="1487034957092" duration="13738000" />
-      <workItem from="1487121502254" duration="1748000" />
+      <workItem from="1487121502254" duration="2822000" />
     </task>
     <task id="LOCAL-00001" summary="git first">
       <created>1481770090638</created>
@@ -497,7 +496,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208603000" />
+    <option name="totallyTimeSpent" value="209677000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
@@ -873,8 +872,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/android面试分享.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="306">
-            <caret line="186" column="4" lean-forward="false" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
+          <first_editor relative-caret-position="438">
+            <caret line="202" column="12" lean-forward="false" selection-start-line="202" selection-start-column="12" selection-end-line="202" selection-end-column="12" />
             <folding />
           </first_editor>
           <second_editor />

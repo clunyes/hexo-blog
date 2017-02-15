@@ -199,3 +199,5 @@ Looper.loop() looper开始工作
     正是由于HandlerThread，IntentService可以进行耗时操作，处理完所有逻辑之后，会自动关闭服务！（这么厉害的东西，之前都没用过）
     
 7. 图片缓存回收的算法    
+
+8. 并发场景，争夺资源
