@@ -16,7 +16,7 @@ tags:
     1. Java代码编译和执行的整个过程
     2. JVM内存管理及垃圾回收机制
 
-    随便一个都很难理解的
+    随便一个都很难理解的。
 
 2. 内存泄漏
 
@@ -31,7 +31,7 @@ tags:
 
     单例，适配，工厂，策略，代理，builder 然而面试官似乎不满意，不过我接触到的似乎这就这些了。。
     
-    饿汉单例 懒汉单例
+    饿汉单例 懒汉单例 饿汉单例比懒汉单例问题少，涉及到多线程，加上synchronize。
 
 ### <font color='af8888'> 某AI公司，面试官非常有耐心，人非常好（好想跟他混。。。）</font>
 
@@ -85,7 +85,7 @@ tags:
 
     因为公司的原因一直在用svn，git都是我个人在玩。所以对于这个问题，还是一脸懵逼，看来还是要多学习。
 
-6. surfaceview的特性
+6. surfaceView的特性
 
     SurfaceView和View最本质的区别在于，surfaceView是在一个新起的单独线程中可以重新绘制画面（双缓冲绘制）而View必须在UI的主线程中更新画面。
     
@@ -113,11 +113,37 @@ tags:
 9. 事件分发
     
     三个关键方法：dispatchTouchEvent 是否消耗当前事件
-    onInterceptTouchEvent
-    onTouchEvent
+    onInterceptTouchEvent 是否拦截当前事件
+    onTouchEvent 是否消耗当前事件
     
+    那么这三个方法有啥关系呢
+    
+        public  boolean dispatchTouchEvent(MotionEvent ev){
+            boolean consume = false;
+            if(onInterceptTouchEvent(ev)){
+                consume = onTouchEvent(ev);
+            } else{
+                consume = child.dispatchTouchEvent(ev);
+            }
+            return consume;
+        }
+        
+    有些要点需要记住，一个事件序列只能被一个view消耗，
+    
+    如果一个事件没有view去处理，那么事件会交给activity处理
+    
+    ViewGroup的onInterceptTouchEvent默认不调用
+    
+    view没有onInterceptTouchEvent的方法
+    
+    事件传递是由activity--window--view。
 
 10. layout绘制流程
+    
+    1. DecorView包含标题栏和内容栏
+    2. setContentView就是将你的xml，inflate到decorView的内容栏contentPatent（R.id.content）
+    
+    结构就是DecorView--> ViewGroup（DecorView的内容栏）--> 你的View。
     
 ### <font color='af8888'> 某宝公司的电话面试</font>
 
@@ -130,6 +156,8 @@ tags:
     onPause activity还是可见的，但是不能交互了
     onStop activity不可见
     onDestroy
+    
+    onPause和onStop一般一起触发
 
 2. activity的四种启动模式
     activity栈：可以理解为线性的路径：actA---->actB---->actC 那么abc是在同一个栈中
@@ -163,6 +191,10 @@ tags:
 
 Looper.loop() looper开始工作
 
+深入探讨下线程
+
+1. 线程挂起
+
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
     
@@ -174,24 +206,42 @@ Looper.loop() looper开始工作
     
 2. onMeasure参数意义
     MeasureSpec 32位的值，高2位是SpecMode，低30位是SpecSize
+    
     SpecMode为
     
-    UNSPECIFIED 
+    UNSPECIFIED 父容器不对view有任何限制
     
-    EXACTLY 
+    EXACTLY 父容器已经检测出view所需要的具体大小，最终大小就是specSize
     
-    AT_MOLT 
+    AT_MOLT 父容器指定了一个可用的specSize，view的大小不能超过这个specSize
     
-    这个之前看书就没有太懂，面试自然不会。。
+    LayoutParam和父容器一起决定MeasureSpec:
     
+    layoutParam.match_parent 大小就是窗口大小
     
-
+    layoutParam.wrap_content 大小不定，不能超过窗口大小
+    
+    100dp固定大小：为layoutParam指定的大小 
+    
+    以上为基础知识
+    
+    子元素measureSpec创建和父容器measureSpec和子元素本身的LayoutParam，还有子元素的margin padding有关系
+    
+    在写自定义view时，如果要自身大小为wrap_content，需要重写onMeasure方法，因为在wrap_content时，view的specMode都是AT_MOST，即会填满父控件
+    如何重写，在onMeasure中判断AT_MOST，将宽高用默认宽高代替。
+   
 3. 自定义绘图，旋转
+
+    采用matrix.setRotate的方式，matrix bitmap的关系？
 
 4. 图片3级缓存
 
-5. activity怎么启动的
-    是不是想问app怎么启动的？
+5. activity的启动过程
+    
+    startActivity最终会调用startActivityForResult
+    
+    获取要启动的activity的信息，由Instrumentation创建activity对象，创建application对象，创建ContextImpl对象并调用attach完成重要数据初始化
+    ，activity onCreate； 具体过程远比这个复杂的多，这个仅仅是最后一步
 
 6. IntentService
     service是运行在主线程中的，所以service是不能进行耗时操作的
@@ -202,4 +252,11 @@ Looper.loop() looper开始工作
 
 8. 并发场景，争夺资源
 
-    synchronized
+    synchronized -- 
+    
+### <font color='af8888'> 某同学问我的问题</font>
+
+1. 数据结构有哪些
+
+
+
