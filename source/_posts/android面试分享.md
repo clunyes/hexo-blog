@@ -21,10 +21,14 @@ tags:
 2. 内存泄漏
 
     推荐一个很好的文章https://medium.com/freenet-engineering/memory-leaks-in-android-identify-treat-and-avoid-d0b1233acc8#.tny5y511b
-    说明了几种容易泄漏的点，服务不关，内部类（网络请求的），匿名类（也是网络请求）
+    说明了几种容易泄漏的点，
+    
+    服务不关，内部类（网络请求的），匿名类（也是网络请求） 网络请求，退出务必关闭回收或者取消。
+    异步线程对控件等用弱引用的方式引用
 
     depth是0的就是泄漏的
-    异步线程对控件用弱引用 文章最后给出了一些建议，关于多线程其实rxjava是非常好的解决方案。
+     
+    文章最后给出了一些建议，关于多线程其实rxjava是非常好的解决方案。
 
 
 3. 用过哪些设计模式
@@ -67,10 +71,10 @@ tags:
     
 
 3. IPC AIDL的简单实现
- IPC的各种方式 广播 AIDL bundle ContentProvider以及socket
+ IPC的各种方式 广播 AIDL Messenger bundle ContentProvider以及socket
     要理解aidl要首先理解binder
     Binder是什么：binder连接前台应用和service的桥梁
-    具体aidl怎么实现，大家去百度吧。之后给大伙解释这个，容我先<font color='EE2C2C'>消化消化</font>，以后一定放一个我的理解。
+    [具体aidl怎么实现](http://clunyes.github.io/2017/2/20/AIDL的梳理.md/).
 
 4. tcp长连接
 
@@ -87,7 +91,7 @@ tags:
 
 6. surfaceView的特性
 
-    SurfaceView和View最本质的区别在于，surfaceView是在一个新起的单独线程中可以重新绘制画面（双缓冲绘制）而View必须在UI的主线程中更新画面。
+    SurfaceView和View最本质的区别在于，surfaceView是在一个新起的单独线程中，可以重新绘制画面（双缓冲绘制）而View必须在UI的主线程中更新画面。
     
     SurfaceView控件适合内存耗费大、需要频繁刷新的场景，常用于显示游戏、动画、视频等。
     
@@ -140,7 +144,7 @@ tags:
 
 10. layout绘制流程
     
-    1. DecorView包含标题栏和内容栏
+    1. DecorView包含标题栏和内容栏（经大神验证，标题栏不是状态栏statusBar）
     2. setContentView就是将你的xml，inflate到decorView的内容栏contentPatent（R.id.content）
     
     结构就是DecorView--> ViewGroup（DecorView的内容栏）--> 你的View。
@@ -161,6 +165,9 @@ tags:
 
 2. activity的四种启动模式
     activity栈：可以理解为线性的路径：actA---->actB---->actC 那么abc是在同一个栈中
+    
+    正常standard启动模式的activity默认会进入启动它的Activity所属的任务栈中
+    
     standard 默认 重新创建
     singleTop 栈顶复用
     singleTask 栈内复用，会弹出目标activity之上的其余activity
@@ -170,7 +177,7 @@ tags:
     localService和remoteService,就是上文的ipc
 
 4. activity和fragment的区别，fragment的优势
-    fragment对比activity更灵活，activity+fragment可以理想的实现业务。
+    fragment对比activity更灵活，fragment轻量级，更加易于管理，易于适配手机和平板。
    
     生命周期如下图：
     ![](../../../../../img/lifecycle.png)
@@ -194,6 +201,8 @@ Looper.loop() looper开始工作
 深入探讨下线程
 
 1. 线程挂起
+
+2. start和run的区别
 
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
@@ -227,7 +236,8 @@ Looper.loop() looper开始工作
     
     子元素measureSpec创建和父容器measureSpec和子元素本身的LayoutParam，还有子元素的margin padding有关系
     
-    在写自定义view时，如果要自身大小为wrap_content，需要重写onMeasure方法，因为在wrap_content时，view的specMode都是AT_MOST，即会填满父控件
+    在写自定义view时，自身大小为具体size,view的specMode都是EXACTLY为childSize，如果是match_content 那么不论是EXACTLY还是AT_MOST都是parentSize，
+    如果要自身大小为wrap_content，则需要重写onMeasure方法，因为在wrap_content时，view的specMode都是AT_MOST，即会填满父控件，这不是我们想要得效果
     如何重写，在onMeasure中判断AT_MOST，将宽高用默认宽高代替。
    
 3. 自定义绘图，旋转
@@ -240,8 +250,11 @@ Looper.loop() looper开始工作
     
     startActivity最终会调用startActivityForResult
     
-    获取要启动的activity的信息，由Instrumentation创建activity对象，创建application对象，创建ContextImpl对象并调用attach完成重要数据初始化
-    ，activity onCreate； 具体过程远比这个复杂的多，这个仅仅是最后一步
+    1. 获取要启动的activity的信息，
+    2. 由Instrumentation创建activity对象，
+    3. 创建application对象，
+    4. 创建ContextImpl对象并调用attach完成重要数据初始化，
+    5. activity onCreate； 具体过程远比这个复杂的多，这个仅仅是最后一步
 
 6. IntentService
     service是运行在主线程中的，所以service是不能进行耗时操作的
@@ -254,9 +267,32 @@ Looper.loop() looper开始工作
 
     synchronized -- 
     
-### <font color='af8888'> 某同学问我的问题</font>
+### <font color='af8888'> 扩展问题</font>
 
 1. 数据结构有哪些
 
+2. java atomic原子  volatile copyOnWrite思路
 
+3. [android 热修复原理](http://clunyes.github.io/2017/2/22/android热修复原理.md/)
+    
+4. android保活
+    1. 不同app利用广播相互唤醒
+    
+    2. 开启前台服务，不显示notification--这种方式还是会被杀死的
+    
+    3. 如果够牛逼，进入系统的白名单
+    
+    4. 一个像素的activity
+    
+    5. JobScheduler（有待验证怎么使用的）
+    
+    进程回收机制：系统内存不足的情况下android会开始杀进程，所使用的机制就是Low Memory Killer。
+    
+    oom_adj值越低越不会被杀死
+    
+    app退到后台时，其所有的进程优先级都会降低。但是UI进程是降低最为明显的，因为它占用的内存资源最多，
+    系统内存不足的时候肯定优先杀这些占用内存高的进程来腾出资源。所以，为了尽量避免后台UI进程被杀，
+    需要尽可能的释放一些不用的资源，尤其是图片、音视频之类的。
+    
+    目前来讲，app进入到后台后，如果资源紧张肯定会被kill。
 

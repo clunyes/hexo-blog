@@ -9,7 +9,7 @@ android IPC 不得不提到AIDL，其余广播 bundle ContentProvider以及socke
 
 其中又有一个关键字Binder，在我理解看来Binder是一个桥梁。
 
-按照android开发艺术探索的指引，生成IBookManager.java文件
+下面演示下binder，按照android开发艺术探索的指引，生成IBookManager.java文件
 
     /*
      * This file is auto-generated.  DO NOT MODIFY.
@@ -174,8 +174,21 @@ stub就是binder类
     
     注意点
     
-    1. 客户端发起请求后线程会挂起，为了防止影响ui线程，建议在子线程中发起请求。
+    1. 客户端发起请求后线程会挂起，为了防止影响ui线程，建议在子线程中发起请求。（客户端服务端道理相同）
     2. onTransact运行在线程池中，所以必须用同步的方式去执行。
     
+*****
+
+    以上是binder的分析
     
+    aidl完全是根据binder的封装的
+    
+    需要注意的点，两端如果某方法耗时，那么调用方需要在子线程中调用
+    
+    解绑接口时要使用RemoteCallbckList，由该类来维护所有的进程间接口
+    
+    服务进程意外断掉的情况，在serviceDisconnected中重连服务，或者给binder设置死亡代理DeathRecipient，重连服务，
+    我感觉前者比较好用
+    
+    aidl权限验证：在onBind方法中permission验证，在onTransact方法中permission验证，其余还有包名验证等。
     
