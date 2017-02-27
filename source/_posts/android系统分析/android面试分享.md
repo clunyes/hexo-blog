@@ -149,6 +149,8 @@ tags:
     
     结构就是DecorView--> ViewGroup（DecorView的内容栏）--> 你的View。
     
+    TODO view绘制流程。activity和window区别
+    
 ### <font color='af8888'> 某宝公司的电话面试</font>
 
 1. android生命周期介绍
@@ -164,13 +166,28 @@ tags:
     onPause和onStop一般一起触发
 
 2. activity的四种启动模式
+
+    先介绍两个概念task和taskAffinity，
+    
+        task：翻译过来就是“任务”，是一组相互有关联的 activity 集合，可以理解为 Activity 是在 task 里面活动的。 
+        task 存在于一个称为 back stack 的数据结构中，也就是说， task 是以栈的形式去管理 activity 的，
+        所以也叫可以称为“任务栈”。
+        taskAffinity：官方文档解释是："The task that the activity has an affinity for."，
+        可以翻译为 activity 相关或者亲和的任务，这个参数标识了一个 Activity 所需要的任务栈的名字。
+        默认情况下，所有Activity所需的任务栈的名字为应用的包名。 taskAffinity 属性主要和 singleTask 
+        启动模式或者 allowTaskReparenting 属性配对使用。
+    
     activity栈：可以理解为线性的路径：actA---->actB---->actC 那么abc是在同一个栈中
     
     正常standard启动模式的activity默认会进入启动它的Activity所属的任务栈中
     
     standard 默认 重新创建
-    singleTop 栈顶复用
-    singleTask 栈内复用，会弹出目标activity之上的其余activity
+    
+    singleTop 栈顶复用，如果栈顶就是这个Activity，那么onNewIntent会被调用
+    
+    singleTask 栈内复用，在第一次启动这个 Activity 时，系统便会创建一个新的任务，taskAffinity 属性是和 singleTask 模式搭配使用的。
+    。如果再次调用会弹出目标activity之上的其余activity，回调onNewIntent。还有个特殊参数allowTaskReparenting，如果是true，会转移任务栈。
+    
     singleInstance 单独占用一个栈，其余与singleTask一致
 
 3. 远程service的调用
@@ -271,7 +288,7 @@ Looper.loop() looper开始工作
 
 1. 数据结构有哪些
 
-2. java atomic原子  volatile copyOnWrite思路
+2. java atomic原子  volatile copyOnWrite思路，各种集合类的实现
 
 3. [android 热修复原理](http://clunyes.github.io/2017/2/22/android热修复原理.md/)
     
