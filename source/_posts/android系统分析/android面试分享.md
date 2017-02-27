@@ -144,12 +144,17 @@ tags:
 
 10. layout绘制流程
     
-    1. DecorView包含标题栏和内容栏（经大神验证，标题栏不是状态栏statusBar）
-    2. setContentView就是将你的xml，inflate到decorView的内容栏contentPatent（R.id.content）
+    1. 如果没有DecorView就创建一个（DecorView包含标题栏和内容栏（经大神验证，标题栏不是状态栏statusBar））
+    2. 将你的xml，添加到decorView的内容栏contentPatent（R.id.content）
+    3. activity回调onContentChanged
     
     结构就是DecorView--> ViewGroup（DecorView的内容栏）--> 你的View。
     
-    TODO view绘制流程。activity和window区别
+    说道这里，必须说一下activity window和view的故事
+    
+        我们知道view是视图，但是android中view不能单独存在，他必须依附于window之上，window就是负责展示view的。
+        activity负责控制window的行为，同时window的结果都会回调给activity。
+        那么view和window是怎么bind起来的呢，通过ViewRootImpl，它就是window和view交互的桥梁。
     
 ### <font color='af8888'> 某宝公司的电话面试</font>
 
@@ -215,11 +220,7 @@ tags:
 
 Looper.loop() looper开始工作
 
-深入探讨下线程
-
-1. 线程挂起
-
-2. start和run的区别
+[深入探讨下线程](http://clunyes.github.io/2017/2/27/javaThread状态.md/).
 
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
@@ -262,6 +263,10 @@ Looper.loop() looper开始工作
     采用matrix.setRotate的方式，matrix bitmap的关系？
 
 4. 图片3级缓存
+    
+    网络缓存, 不优先加载, 速度慢,浪费流量
+    本地缓存, 次优先加载, 速度快
+    内存缓存, 优先加载, 速度最快
 
 5. activity的启动过程
     
@@ -287,6 +292,21 @@ Looper.loop() looper开始工作
 ### <font color='af8888'> 扩展问题</font>
 
 1. 数据结构有哪些
+
+        1. 逻辑结构分为:集合结构；线性结构；树形结构；图形结构
+        2. 物理（计算机存储）结构：顺序存储结构，数组；链式存储结构，链表
+        
+ 数组 
+ 
+ 链表
+ 
+ 栈
+
+ 队列
+ 
+ 树
+ 
+ 图
 
 2. java atomic原子  volatile copyOnWrite思路，各种集合类的实现
 
