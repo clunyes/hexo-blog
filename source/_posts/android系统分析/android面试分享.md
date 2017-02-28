@@ -74,7 +74,7 @@ tags:
  IPC的各种方式 广播 AIDL Messenger bundle ContentProvider以及socket
     要理解aidl要首先理解binder
     Binder是什么：binder连接前台应用和service的桥梁
-    [具体aidl怎么实现](http://clunyes.github.io/2017/2/20/AIDL的梳理.md/).
+    [具体aidl怎么实现](http://clunyes.github.io/2017/02/20/android系统分析/AIDL的梳理/).
 
 4. tcp长连接
 
@@ -220,7 +220,7 @@ tags:
 
 Looper.loop() looper开始工作
 
-[深入探讨下线程](http://clunyes.github.io/2017/2/27/javaThread状态.md/).
+[深入探讨下线程](http://clunyes.github.io/2017/2/27/javaThread状态/).
 
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
@@ -285,6 +285,17 @@ Looper.loop() looper开始工作
     
 7. 图片缓存回收的算法    
 
+        1. 新数据插入到链表头部；
+        
+        2. 每当缓存命中（即缓存数据被访问），则将数据移到链表头部；
+        
+        3. 当链表满的时候，将链表尾部的数据丢弃。
+    
+    LRU，最近最少使用算法
+    LruCache是由LinkedHashMap来实现的。
+
+    图片缓存的是drawable。
+
 8. 并发场景，争夺资源
 
     synchronized -- 
@@ -296,9 +307,9 @@ Looper.loop() looper开始工作
         1. 逻辑结构分为:集合结构；线性结构；树形结构；图形结构
         2. 物理（计算机存储）结构：顺序存储结构，数组；链式存储结构，链表
         
- 数组 
+ 数组 String[] 包括列表
  
- 链表
+ 链表 LinkedList
  
  栈
 
@@ -308,9 +319,10 @@ Looper.loop() looper开始工作
  
  图
 
-2. java atomic原子  volatile copyOnWrite思路，各种集合类的实现
+2. java atomic原子  volatile copyOnWrite思路，
+[各种集合类的实现](http://clunyes.github.io/2017/02/28/源码阅读/java集合理解/)
 
-3. [android 热修复原理](http://clunyes.github.io/2017/2/22/android热修复原理.md/)
+3. [android 热修复原理](http://clunyes.github.io/2017/02/22/android热修复原理/)
     
 4. android保活
     1. 不同app利用广播相互唤醒
