@@ -21,9 +21,10 @@ tags:
 2. 内存泄漏
 
     推荐一个很好的文章https://medium.com/freenet-engineering/memory-leaks-in-android-identify-treat-and-avoid-d0b1233acc8#.tny5y511b
-    说明了几种容易泄漏的点，
+    说明了几种容易泄漏的点，归总也就是一点activity或者fragment中不要有超过本身生命周期的引用，
+    否则activity（fragment）无法被回收。
     
-    服务不关，内部类（网络请求的），匿名类（也是网络请求） 网络请求，退出务必关闭回收或者取消。
+    1服务不关，2内部类（网络请求的），3匿名类（也是网络请求） 网络请求，退出务必关闭回收或者取消。
     异步线程对控件等用弱引用的方式引用
 
     depth是0的就是泄漏的
@@ -32,10 +33,8 @@ tags:
 
 
 3. 用过哪些设计模式
-
-    单例，适配，工厂，策略，代理，builder 然而面试官似乎不满意，不过我接触到的似乎这就这些了。。
     
-    饿汉单例 懒汉单例 饿汉单例比懒汉单例问题少，涉及到多线程，加上synchronize。
+    正在学习！！
 
 ### <font color='af8888'> 某AI公司，面试官非常有耐心，人非常好（好想跟他混。。。）</font>
 
@@ -222,11 +221,13 @@ Looper.loop() looper开始工作
 
 [深入探讨下线程](http://clunyes.github.io/2017/2/27/javaThread状态/).
 
+[java线程池](http://clunyes.github.io/2017/2/28/java线程池/).
+
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
     
     FixedThreadPool   线程池固定的线程池
-    CachedThreadPool  线程数上限很大，一有任务就会执行，超时就会停止。
+    CachedThreadPool  线程数上限很大，一有任务就会执行，终止并从缓存中移除那些已有 60 秒钟未被使用的线程。
     全部闲置时，线程全部停止，此时线程池不占用内存
     ScheduledThreadPool  核心线程数固定，非核心线程数目不固定，闲置就会回收
     SingleThreadExecutor 单个线程的线程池，是同步的
@@ -320,7 +321,7 @@ Looper.loop() looper开始工作
  图
 
 2. java atomic原子  volatile copyOnWrite思路，
-[各种集合类的实现](http://clunyes.github.io/2017/02/28/源码阅读/java集合理解/)
+[各种集合类的实现](http://clunyes.github.io/2017/02/28/java深入学习/java集合理解/)
 
 3. [android 热修复原理](http://clunyes.github.io/2017/02/22/android热修复原理/)
     

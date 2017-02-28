@@ -24,8 +24,8 @@ Java集合是java提供的工具包，包含了常用的数据结构：集合、
         List是元素有序并且可以重复的集合，被称为序列
         List可以精确的控制每个元素的插入位置，或删除某个位置元素
         List接口的常用子类：
-        ArrayList 详解
-        LinkedList 详解
+        ArrayList 
+        LinkedList 
         Vector
         Stack
     

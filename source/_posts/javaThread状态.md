@@ -5,9 +5,12 @@ tags:
 ---
 首先一个小问题：线程实现可以是thread和runnable，本身两者并没有优劣，但是一个是继承一个是接口，如果你要继承其他类，还是用runnable。
 
+run和start的区别，start方法开启了新线程，run方法没有，start方法不阻塞主线程。
+
 以下是thread的状态图，有助于理解线程的生命周期。
 
 ![](../../../../img/threadStatus.jpg).
+
 
 1.     程序通过Thread t = new Thread()，调用t.start()启动一个线程，使该线程进入可运行(Runnable)的状态。
 
