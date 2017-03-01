@@ -18,3 +18,4 @@ tags:
     ThreadPoolExecutor 实现类，继承自AbstractExecutorService
     
     
+可返回值的任务必须实现Callable接口，类似的，无返回值的任务必须Runnable接口。    

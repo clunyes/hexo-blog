@@ -21,9 +21,10 @@ http://blog.csdn.net/universus/article/details/6211589 这篇文章可以反复�
 那么他们的启动流程到底是怎么样的？
 
 看到一篇非常好的文章
-activity启动流程文章：http://www.jianshu.com/p/e0a6717bc75e，我就不献丑了
+activity启动流程文章： http://www.jianshu.com/p/e0a6717bc75e 
+，我就不献丑了
 
-基本流程
+基本流程-两个ipc，应用进程和system server进程，应用进程里涉及到的线程包括ui线程和ApplicationThread
 
     Activty---ActivityManagerProxy : ActvitiyManagerNative--ActivityManagerService
     
@@ -32,8 +33,6 @@ activity启动流程文章：http://www.jianshu.com/p/e0a6717bc75e，我就不�
 service和activity流程基本差不多
 
 我这里介绍下一些关键的类
-
-[具体aidl怎么实现](http://clunyes.github.io/2017/2/20/AIDL的梳理.md/)请看这里.
    
     ActivityManagerService （很多都是简称ams，类似的重要服务还有很多PackageManagerService，WindowManagerService）
     相当于BookManagerService，是服务端。
@@ -48,6 +47,8 @@ service和activity流程基本差不多
     
     Instrumentation
     工具类
+    
+[具体aidl怎么实现](http://clunyes.github.io/2017/2/20/android系统分析/AIDL的梳理.md/)请看这里.    
     
 关于AMS，AMS并不是字面意思Activity管理服务，而是service也在其中管理。
     

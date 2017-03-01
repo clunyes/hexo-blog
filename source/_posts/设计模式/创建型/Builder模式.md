@@ -5,3 +5,4 @@ tags:
 ---
 ##Builder模式
 
+    典型的builder，android的dialog

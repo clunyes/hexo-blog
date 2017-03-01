@@ -219,9 +219,9 @@ tags:
 
 Looper.loop() looper开始工作
 
-[深入探讨下线程](http://clunyes.github.io/2017/2/27/javaThread状态/).
+[深入探讨下线程](http://clunyes.github.io/2017/2/27/java深入学习/javaThread状态/).
 
-[java线程池](http://clunyes.github.io/2017/2/28/java线程池/).
+[java线程池](http://clunyes.github.io/2017/2/28/java深入学习/java线程池/).
 
 ### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
 1. 线程池具体实现有哪几种
@@ -229,7 +229,7 @@ Looper.loop() looper开始工作
     FixedThreadPool   线程池固定的线程池
     CachedThreadPool  线程数上限很大，一有任务就会执行，终止并从缓存中移除那些已有 60 秒钟未被使用的线程。
     全部闲置时，线程全部停止，此时线程池不占用内存
-    ScheduledThreadPool  核心线程数固定，非核心线程数目不固定，闲置就会回收
+    ScheduledThreadPool  核心线程数固定，非核心线程数目不固定，闲置就会回收。适用于执行定时任务，固定周期的任务。
     SingleThreadExecutor 单个线程的线程池，是同步的
     
 2. onMeasure参数意义
@@ -271,13 +271,7 @@ Looper.loop() looper开始工作
 
 5. activity的启动过程
     
-    startActivity最终会调用startActivityForResult
-    
-    1. 获取要启动的activity的信息，
-    2. 由Instrumentation创建activity对象，
-    3. 创建application对象，
-    4. 创建ContextImpl对象并调用attach完成重要数据初始化，
-    5. activity onCreate； 具体过程远比这个复杂的多，这个仅仅是最后一步
+    [详细说明](http://clunyes.github.io/2017/02/24/android系统分析/activity启动和service启动/)
 
 6. IntentService
     service是运行在主线程中的，所以service是不能进行耗时操作的
@@ -299,7 +293,7 @@ Looper.loop() looper开始工作
 
 8. 并发场景，争夺资源
 
-    synchronized -- 
+    [synchronized](http://clunyes.github.io/2017/02/24/java深入学习/java线程安全/)
     
 ### <font color='af8888'> 扩展问题</font>
 
