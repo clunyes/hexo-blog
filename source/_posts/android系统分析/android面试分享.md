@@ -101,7 +101,6 @@ tags:
 7. httpdns
 
     httpdns和dns有什么差别
-    dns基于udp协议
     httpdns基于http协议
     httpdns：httpdns使用HTTP协议进行域名解析，代替现有基于udp的dns协议
     
@@ -306,16 +305,16 @@ Looper.loop() looper开始工作
  
  链表 LinkedList
  
- 栈
+ 栈 activity task 就是一个栈，先进后出
 
- 队列
+ 队列  基本上，一个队列就是一个先入先出（FIFO）的数据结构
  
  树
  
  图
 
-2. java atomic原子  volatile copyOnWrite思路，
-[各种集合类的实现](http://clunyes.github.io/2017/02/28/java深入学习/java集合理解/)
+2. java  copyOnWrite思路，
+    [各种集合类的实现](http://clunyes.github.io/2017/02/28/java深入学习/java集合理解/)
 
 3. [android 热修复原理](http://clunyes.github.io/2017/02/22/android热修复原理/)
     
@@ -339,4 +338,29 @@ Looper.loop() looper开始工作
     需要尽可能的释放一些不用的资源，尤其是图片、音视频之类的。
     
     目前来讲，app进入到后台后，如果资源紧张肯定会被kill。
+    
+5. 生产者消费者模式
 
+6. android优化
+    
+    1. 内存泄漏方面
+    2. ui视图绘制慢导致卡顿
+    3. 严苛模式
+    4. 启动优化
+    
+7. socket的基本流程
+    ![](../../../../../img/socket主流程.png)
+    
+    
+#<font color='af8888'> 唯X科技面试</font>
+
+面试官表示我还是个中级。哎，慢慢面吧。
+
+1. android ndk 开发
+2. 对于android framework的理解
+3. 源码要自己敲一遍，理解更加深刻
+4. app启动时间优化 adb shell am start -W cn.mynewclouedeu/cn.mynewclouedeu.ui.activity.ActivityGuide 
+查出启动时间，application初始化使用线程操作。
+    
+    
+又发现了一个大牛的面经： http://www.jianshu.com/p/dea7c3555b3c    ，不得不说基础很重要。
