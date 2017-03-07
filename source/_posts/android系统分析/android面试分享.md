@@ -6,36 +6,6 @@ tags:
     首先感谢各个公司给了我面试的机会
 这段时间在看机会，去了几个面试，把面试到的题目和大家分享一下
 
-
-
-### <font color='af8888'>葱X公司，个人觉得这次面试没啥收获</font>
-
-1. jvm的工作原理
-
-    A：网上搜了下，涉及面很广
-    1. Java代码编译和执行的整个过程
-    2. JVM内存管理及垃圾回收机制
-
-    随便一个都很难理解的。
-
-2. 内存泄漏
-
-    推荐一个很好的文章https://medium.com/freenet-engineering/memory-leaks-in-android-identify-treat-and-avoid-d0b1233acc8#.tny5y511b
-    说明了几种容易泄漏的点，归总也就是一点activity或者fragment中不要有超过本身生命周期的引用，
-    否则activity（fragment）无法被回收。
-    
-    1服务不关，2内部类（网络请求的），3匿名类（也是网络请求） 网络请求，退出务必关闭回收或者取消。
-    异步线程对控件等用弱引用的方式引用
-
-    depth是0的就是泄漏的
-     
-    文章最后给出了一些建议，关于多线程其实rxjava是非常好的解决方案。
-
-
-3. 用过哪些设计模式
-    
-    正在学习！！
-
 ### <font color='af8888'> 某AI公司，面试官非常有耐心，人非常好（好想跟他混。。。）</font>
 
 1. oauth2.0授权的流程
@@ -47,27 +17,8 @@ tags:
     （C）客户端使用上一步获得的授权accessToken，向资源服务器申请获取资源。
 
     （D）资源服务器确认令牌无误，返回该accessToken的相关数据。
-
-    2. 如何封装jni，或者说如何对应java调用的方法和so的方法
-
-    对于传统的JNI编程来说，JNI方法跟Java类方法的名称之间有一定的对应关系，要遵循一定的命名规则，如下：
-    - 前缀： Java_
-    - 类的全限定名，用下划线进行分隔（_）
-    - 方法名：getTestString
- 
-       
-        package cn.mynewclouedeu.ui.activity;
-        public class ActivityTest extends BaseActivity {
-        ...
-        pubic native boolean isRight(String str);
-        ...
-        }
-        //so 对应方法
-        boolean Java_cn_mycloudedu_ui_activity_ActivityTest_isRight(JNIEnv *env,jobject class,jstring str){//env是jni环境，class是java中的this
-        ...
-        }
     
-    
+2. [jni调用](http://clunyes.github.io/2017/03/03/java深入学习/jni浅析/).
 
 3. IPC AIDL的简单实现
  IPC的各种方式 广播 AIDL Messenger bundle ContentProvider以及socket
@@ -141,10 +92,13 @@ tags:
     事件传递是由activity--window--view。
 
 10. layout绘制流程
+
+    activity attach方法，创建window建立关联。setContentView
     
     1. 如果没有DecorView就创建一个（DecorView包含标题栏和内容栏（经大神验证，标题栏不是状态栏statusBar））
     2. 将你的xml，添加到decorView的内容栏contentPatent（R.id.content）
     3. activity回调onContentChanged
+    4. 最后在onResume中调用makeVisible
     
     结构就是DecorView--> ViewGroup（DecorView的内容栏）--> 你的View。
     
@@ -153,6 +107,23 @@ tags:
         我们知道view是视图，但是android中view不能单独存在，他必须依附于window之上，window就是负责展示view的。
         activity负责控制window的行为，同时window的结果都会回调给activity。
         那么view和window是怎么bind起来的呢，通过ViewRootImpl，它就是window和view交互的桥梁。
+        
+11. jvm
+
+    详见 http://www.jianshu.com/p/54eb60cfa7bd
+    
+12. 内存泄漏
+    
+        推荐一个很好的文章https://medium.com/freenet-engineering/memory-leaks-in-android-identify-treat-and-avoid-d0b1233acc8#.tny5y511b
+        说明了几种容易泄漏的点，归总也就是一点activity或者fragment中不要有超过本身生命周期的引用，
+        否则activity（fragment）无法被回收。
+        
+        1服务不关，2内部类（网络请求的），3匿名类（也是网络请求） 网络请求，退出务必关闭回收或者取消。
+        异步线程对控件等用弱引用的方式引用
+    
+        depth是0的就是泄漏的
+         
+        文章最后给出了一些建议，关于多线程其实rxjava是非常好的解决方案。
     
 ### <font color='af8888'> 某宝公司的电话面试</font>
 
@@ -180,9 +151,7 @@ tags:
         默认情况下，所有Activity所需的任务栈的名字为应用的包名。 taskAffinity 属性主要和 singleTask 
         启动模式或者 allowTaskReparenting 属性配对使用。
     
-    activity栈：可以理解为线性的路径：actA---->actB---->actC 那么abc是在同一个栈中
-    
-    正常standard启动模式的activity默认会进入启动它的Activity所属的任务栈中
+    正常standard启动模式的activity默认会进入应用报名所属的任务栈中
     
     standard 默认 重新创建
     
@@ -214,15 +183,16 @@ tags:
 - 每一个线程有一个Looper，looper内部有一个mq
 - handler有它的特性，handler可以在任意线程发送消息，handler发送的消息都会发送到它关联的looper的mq中
 （handler的创建会关联一个looper，如果不设置默认是当前线程的looper）
-- looper会轮询自己的mq来处理消息
+- looper会轮询自己的mq来处理消息，交给handler的handleMessage去处理。
 
 Looper.loop() looper开始工作
 
-[深入探讨下线程](http://clunyes.github.io/2017/2/27/java深入学习/javaThread状态/).
+[深入探讨下线程](http://clunyes.github.io/2017/02/27/java深入学习/javaThread状态/).
 
-[java线程池](http://clunyes.github.io/2017/2/28/java深入学习/java线程池/).
+[java线程池](http://clunyes.github.io/2017/02/28/java深入学习/java线程池/).
 
-### <font color='af8888'> 某怡科技面试，android负责人技术不错</font>
+### <font color='af8888'> 某怡科技面试，android负责人技术还行，</font>感觉是对着android开发艺术探索来面的，不过这本书确实经典
+
 1. 线程池具体实现有哪几种
     
     FixedThreadPool   线程池固定的线程池
@@ -286,13 +256,13 @@ Looper.loop() looper开始工作
         3. 当链表满的时候，将链表尾部的数据丢弃。
     
     LRU，最近最少使用算法
-    LruCache是由LinkedHashMap来实现的。
+    LruCache是由LinkedHashMap来实现的，同步实现（因为是不同线程调用的）。
 
     图片缓存的是drawable。
 
 8. 并发场景，争夺资源
 
-    [synchronized](http://clunyes.github.io/2017/02/24/java深入学习/java线程安全/)
+    [synchronized](http://clunyes.github.io/2017/03/01/java深入学习/java线程安全/)
     
 ### <font color='af8888'> 扩展问题</font>
 
@@ -346,21 +316,36 @@ Looper.loop() looper开始工作
     1. 内存泄漏方面
     2. ui视图绘制慢导致卡顿
     3. 严苛模式
-    4. 启动优化
+    4. 启动优化--不必要在application中初始化的代码，放到ui初始化完成后。
     
 7. socket的基本流程
     ![](../../../../../img/socket主流程.png)
     
     
-#<font color='af8888'> 唯X科技面试</font>
+### <font color='af8888'> 唯X科技面试，</font>有一句说一句，面试官是架构师技术非常不错，人很谦和，
 
 面试官表示我还是个中级。哎，慢慢面吧。
 
 1. android ndk 开发
+
 2. 对于android framework的理解
+
 3. 源码要自己敲一遍，理解更加深刻
+
 4. app启动时间优化 adb shell am start -W cn.mynewclouedeu/cn.mynewclouedeu.ui.activity.ActivityGuide 
 查出启动时间，application初始化使用线程操作。
+
+5. java与模式，理解低耦合高内聚
+
+### <font color='af8888'> X联动力面试，</font>还是比较奇葩的，提了个需求问行不行
+1. 需要要和硬件打交道（jni hal你都得会）
+
+2. 自己公司有自己的视频流协议（视频流的协议，通信协议你得熟悉）
+
+3. 要做android app开发（app相关你也得过关）
+
+要求还是挺高的，如果去做的话对于我这样的工程师估计够呛。
+
     
     
 又发现了一个大牛的面经： http://www.jianshu.com/p/dea7c3555b3c    ，不得不说基础很重要。

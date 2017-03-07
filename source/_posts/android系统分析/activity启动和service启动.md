@@ -18,6 +18,15 @@ Binder优势：
 Android需要建立一套新的IPC机制来满足系统对通信方式，传输性能和安全性的要求，这就是Binder。
 http://blog.csdn.net/universus/article/details/6211589 这篇文章可以反复阅读。
 
+    Binder通信的四个角色：
+
+        Client进程：使用服务的进程。
+        Server进程：提供服务的进程。
+        ServiceManager进程：ServiceManager的作用是将字符形式的Binder名字转化成Client中对该Binder的引用，使得Client能够通过Binder名字获得对Server中Binder实体的引用。
+        Binder驱动：驱动负责进程之间Binder通信的建立，Binder在进程之间的传递，Binder引用计数管理，数据包在进程之间的传递和交互等一系列底层支持。
+
+
+
 那么他们的启动流程到底是怎么样的？
 
 看到一篇非常好的文章
