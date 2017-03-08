@@ -169,7 +169,7 @@ tags:
     fragment对比activity更灵活，fragment轻量级，更加易于管理，易于适配手机和平板。
    
     生命周期如下图：
-    ![](../../../../../img/lifecycle.png)
+    ![](../../../../../images/lifecycle.png)
 
 5. 最满意的模块和其中使用的设计模式
     恩。。
@@ -319,7 +319,7 @@ Looper.loop() looper开始工作
     4. 启动优化--不必要在application中初始化的代码，放到ui初始化完成后。
     
 7. socket的基本流程
-    ![](../../../../../img/socket主流程.png)
+    ![](../../../../../images/socket主流程.png)
     
     
 ### <font color='af8888'> 唯X科技面试，</font>有一句说一句，面试官是架构师技术非常不错，人很谦和，
@@ -344,6 +344,10 @@ Looper.loop() looper开始工作
 8. aop 面向切面编程
 
 9. 增量更新
+
+10. 注解的理解
+
+这道问题非常考验功力，慢慢修炼。
 
 ### <font color='af8888'> X联动力面试，</font>面试流程比较奇葩的，提了个需求问行不行
 1. 需要要和硬件打交道（jni hal你都得会）

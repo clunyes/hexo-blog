@@ -7,12 +7,12 @@ LinkedList与ArrayList一样实现List接口，只是ArrayList是List接口的�
 LinkedList是List接口链表的实现。基于链表实现的方式使得LinkedList在插入和删除时更优于ArrayList，
 而随机访问则比ArrayList逊色些。
 
-![](../../../../../img/linkedlist/singleLink.jpg)
+![](../../../../../images/linkedlist/singleLink.jpg)
 
-![](../../../../../img/linkedlist/singleLoopLink.jpg)
+![](../../../../../images/linkedlist/singleLoopLink.jpg)
 
-![](../../../../../img/linkedlist/doubleLink.jpg)
+![](../../../../../images/linkedlist/doubleLink.jpg)
 
-![](../../../../../img/linkedlist/doubleLoopLink.jpg)
+![](../../../../../images/linkedlist/doubleLoopLink.jpg)
 
 LinkedList 是一个双向循环链表

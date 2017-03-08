@@ -16,7 +16,7 @@ tags:
 ----
 以上是之前总结的，现在结合大神的姿势，我再理理顺
   
-![](../../../../../img/volley.png)
+![](../../../../../images/volley.png)
   
     RequestQueue并不是一个简单的Queue，内部有好几个Queue，其中mCurrentRequests 存放所有请求，
     包括已经运行的和正在等待的请求；mCacheQueue （Request）表示目前缓存的请求队列，
@@ -35,7 +35,7 @@ Volley提供的功能
     
 volley 流程图
 
-![](../../../../../img/volley_flow.png)
+![](../../../../../images/volley_flow.png)
 
 Volley的磁盘缓存
 

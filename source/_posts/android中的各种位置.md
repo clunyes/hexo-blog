@@ -3,7 +3,7 @@ title: android中的各种位置
 date: 2017-02-28 10:57:42
 tags:
 ---
-![](../../../../img/androidPosition.png).
+![](../../../../images/androidPosition.png).
     
     View提供的获取坐标方法
     　　getTop()：获取到的是View自身的顶边到其父布局顶边的距离。

@@ -7,9 +7,9 @@ ArrayList 是一个数组队列，相当于动态数组。
 
 难点
     
-![](../../../../../img/listadd.jpg)
+![](../../../../../images/listadd.jpg)
 
-![](../../../../../img/listinsert.jpg)
+![](../../../../../images/listinsert.jpg)
 
 总结
 ArrayList和LinkedList的区别

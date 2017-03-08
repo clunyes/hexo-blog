@@ -4,10 +4,10 @@
 
 # Site
 title: clunyes_blog
-subtitle: go on
+subtitle:
 description: it is my code road
 author: clunyes
-language: zh-CN       #网页编码,中文
+language: zh-Hans       #网页编码,中文
 email: clunyes@126.com  #作者邮箱
 timezone:
 
@@ -65,7 +65,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: pacman
-theme: clean-blog
+theme: next
+
+avatar: sources/images/avatar.png
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

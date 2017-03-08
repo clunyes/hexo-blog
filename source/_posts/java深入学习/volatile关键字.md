@@ -5,7 +5,7 @@ tags:
 ---
 首先放一张图，不懂不要紧，说实话看了全篇还是有不懂的
 
-![](../../../../img/volatile.jpg).
+![](../../../../images/volatile.jpg).
 
 线程中的三个概念
    
@@ -59,7 +59,7 @@ tags:
 
 -----    
 使用volatile后
-![](../../../../img/volatile2.jpg).
+![](../../../../images/volatile2.jpg).
 
 下面将关键字synchronized和volatile进行一下比较：
 1）关键字volatile是线程同步的轻量级实现，所以volatile性能肯定比synchronized要好，并且volatile只能修饰于变量，而synchronized可以修饰方法，以及代码块。随着JDK新版本的发布，synchronized关键字在执行效率上得到很大提升，在开发中使用synchronized关键字的比率还是比较大的。
