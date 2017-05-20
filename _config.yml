@@ -74,5 +74,5 @@ avatar: images/avatar.png
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: http://github.com/clunyes/clunyes.github.io.git
+  repository: https://github.com/clunyes/clunyes.github.io
   branch: master
