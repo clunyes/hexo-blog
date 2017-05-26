@@ -18,4 +18,6 @@ https://github.com/GavinCT/AndroidMultiChannelBuildTool 秒打包。
 
 
 可以读取出渠道名的，已经满足了我的需求。
-技术是不停步的，随着7.0的推出，新的签名方式已经出现了，解决方案http://tech.meituan.com/android-apk-v2-signature-scheme.html。不过这个我没看，感觉还用不上。
+技术是不停步的，随着7.0的推出，新的签名方式已经出现了，解决方案http://tech.meituan.com/android-apk-v2-signature-scheme.html
+
+不过这个我没看，感觉还用不上。
