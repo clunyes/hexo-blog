@@ -5,6 +5,7 @@ tags:
 ---
 | 平台版本        | API 级别          | VERSION_CODE       |    备注    |
 | ---------------------- |:-------------:| ---------:| -----:|
+| Android 8.0      | 25      |   O | |
 | Android 7.0      | 24      |   N | |
 | Android 6.0      | 23      |   M | |
 | Android 5.1      | 22      |   LOLLIPOP_MR1  | |
